@@ -1,6 +1,6 @@
 import express from "express";
 import morgan from "morgan";
-import router, {} from './routes/UserRoutes.js'
+import router from './routes/UserRoutes.js'
 import mongoose from "mongoose";
 
 const app = express();
@@ -13,4 +13,4 @@ mongoose.connect('mongodb+srv://change123:newchange1@cluster0.k0bgc2r.mongodb.ne
 .then(() => console.log("DB connected"))
 .catch((err) => console.log("DB Error =>", err))
 
-app.listen(8000,() => console.log("Working on port 8000"));
+app.listen(8001,() => console.log("Working on port 8001"));

@@ -1,14 +1,16 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
 
-const User = new Schema({
-    Name: String,
-    Email: String,
-    Password: String,
-    Pin: Number,
-    Number: Number,
-    Address: String,
-    Pancard: String,
-});
+const user = new Schema
+({
+    name:String,
+    email:String,
+    password:String,
+    pin:String,
+    number:Number,
+    address:String,
+    pancard:String
 
-export default mongoose.model("Users",User);
+})
+
+export default mongoose.model("Users",user);
