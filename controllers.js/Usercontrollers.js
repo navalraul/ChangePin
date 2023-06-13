@@ -13,20 +13,27 @@ export const register = async (req, res) => {
         if (!Pancard) return req.send("User Pancard is required!");
 
         const response = await Users.find({ Email: Email}).exec();
-        if(response.length) {
-            return res.send("Email already present");
-        }
+        if(response.length) return res.send("Email already present");
+
+        let secretkey = "naval";
+        let plaintextForPassword = Password;
+        let plaintextForPin = Pin;
+
+        const ciphertextForPassword = encrypt.encrypt(plaintextForPassword, secretkey, 256);
+        const ciphertextForPin = encrypt.encrypt(plaintextForPin, secretkey, 256);
+
         const user = new Users({
             Name: Name,
             Email: Email,
-            Password: Password,
-            Pin: Pin,
+            Password: ciphertextForPassword,
+            Pin: ciphertextForPin,
             Number: Number,
             Address: Address,
             Pancard: Pancard
         });
         await user.save();
         return res.send("Register successful!")
+        
     }catch (err){
         return res.send(err);
     }
